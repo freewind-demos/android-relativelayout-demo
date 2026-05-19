@@ -1,6 +1,7 @@
 package com.example.demo
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -26,6 +27,12 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        val titleId = View.generateViewId()
+        val descriptionId = View.generateViewId()
+        val buttonAId = View.generateViewId()
+        val buttonBId = View.generateViewId()
+        val buttonCId = View.generateViewId()
+
         // 创建 RelativeLayout 作为主要布局容器
         val relativeLayout = RelativeLayout(this).apply {
             layoutParams = ConstraintLayout.LayoutParams(
@@ -47,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         // 创建标题 TextView - 位于顶部居中
         val titleText = TextView(this).apply {
-            id = android.R.id.title
+            id = titleId
             text = "RelativeLayout 示例"
             textSize = 24f
             layoutParams = RelativeLayout.LayoutParams(
@@ -61,14 +68,14 @@ class MainActivity : AppCompatActivity() {
 
         // 创建中间的文本说明 - 位于标题下方
         val descriptionText = TextView(this).apply {
-            id = android.R.id.description
+            id = descriptionId
             text = "RelativeLayout 允许子视图相对于父容器或其他子视图进行定位"
             textSize = 14f
             layoutParams = RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
             ).apply {
-                addRule(RelativeLayout.BELOW, android.R.id.title)  // 在标题下方
+                addRule(RelativeLayout.BELOW, titleId)  // 在标题下方
                 addRule(RelativeLayout.CENTER_HORIZONTAL)          // 水平居中
                 topMargin = 24
             }
@@ -77,12 +84,12 @@ class MainActivity : AppCompatActivity() {
         // 创建按钮 A - 位于中间描述文字下方
         val buttonA = Button(this).apply {
             text = "按钮 A"
-            id = android.R.id.button1
+            id = buttonAId
             layoutParams = RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
             ).apply {
-                addRule(RelativeLayout.BELOW, android.R.id.description)  // 在描述下方
+                addRule(RelativeLayout.BELOW, descriptionId)  // 在描述下方
                 addRule(RelativeLayout.CENTER_HORIZONTAL)                // 水平居中
                 topMargin = 24
             }
@@ -91,13 +98,13 @@ class MainActivity : AppCompatActivity() {
         // 创建按钮 B - 位于按钮 A 左侧
         val buttonB = Button(this).apply {
             text = "按钮 B"
-            id = android.R.id.button2
+            id = buttonBId
             layoutParams = RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
             ).apply {
-                addRule(RelativeLayout.ABOVE, android.R.id.button3)  // 在按钮 C 上方
-                addRule(RelativeLayout.LEFT_OF, android.R.id.button1) // 在按钮 A 左侧
+                addRule(RelativeLayout.ABOVE, buttonCId)  // 在按钮 C 上方
+                addRule(RelativeLayout.LEFT_OF, buttonAId) // 在按钮 A 左侧
                 topMargin = 100
             }
         }
@@ -105,12 +112,12 @@ class MainActivity : AppCompatActivity() {
         // 创建按钮 C - 位于底部居中
         val buttonC = Button(this).apply {
             text = "按钮 C"
-            id = android.R.id.button3
+            id = buttonCId
             layoutParams = RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
             ).apply {
-                addRule(RelativeLayout.ABOVE, android.R.id.button1)  // 在按钮 A 上方
+                addRule(RelativeLayout.ABOVE, buttonAId)  // 在按钮 A 上方
                 addRule(RelativeLayout.CENTER_HORIZONTAL)           // 水平居中
             }
         }
